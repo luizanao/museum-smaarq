@@ -27,6 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR + '/media/'
+
+# UPLOADS_ROOT = MEDIA_ROOT + '/uploads/'
 
 # Application definition
 
@@ -52,6 +56,22 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'museum.urls'
 
+
+INSTALLED_APPS = (
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    # 'django.contrib.sites',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'grappelli',
+    'django.contrib.admin',
+    # 'django.contrib.admindocs',
+    'webapp',
+    'redactor'
+)
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -76,8 +96,12 @@ WSGI_APPLICATION = 'museum.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',   # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'museum',                       # Or path to database file if using sqlite3.
+        'USER': 'root',
+        'PASSWORD': '123',
+        'HOST': '',                             # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': '',                             # Set to empty string for default.
     }
 }
 
@@ -85,14 +109,10 @@ DATABASES = {
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
+TIME_ZONE = 'America/Sao_Paulo'
+LANGUAGE_CODE = 'pt-br'
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 
