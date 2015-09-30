@@ -17,6 +17,8 @@ class CollectionAdmin(admin.ModelAdmin):
     list_display = ('col_itemname', 'image_thumb')
     inlines = [ImagemInline]
 
+    class Media:
+    	js = ['/static/js/geoposition.js']
 #####################################################
 
 admin.site.register(Collection, CollectionAdmin)

@@ -17,8 +17,25 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from webapp import views, api 
+
+#for Django REST API  ######################
+from rest_framework import viewsets, routers
+
+router = routers.DefaultRouter()
+# router.register(r'get-app-version', api.AppVersionViewSet)
+#######################
 
 urlpatterns = [
+    
+    #site
+    url(r'^acervo/(?P<id>.*)/$', views.home, name='home'),
+
+    #API
+    url(r'^api/(?P<id_uuid>.*)$', api.ItemView.as_view()),
+    url(r'^api/', include(router.urls)),
+    
+    #utils
     url(r'^grappelli/', include('grappelli.urls')), # grappelli URLS
     url(r'^admin/', include(admin.site.urls)),
 
